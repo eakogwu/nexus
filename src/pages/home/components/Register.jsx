@@ -9,7 +9,7 @@ const Register = () => {
         <img src={regBg} alt="register section"/>
         <div className="overlay"/>
       </div>
-      <div className="container">
+      <div className="container" id="registerContainer">
         <div className="content">
           <h1>You Deserve Better: Join the
             Future of Healthcare with
@@ -175,7 +175,7 @@ const Section =  styled.section`
     .container{
       flex-direction: column;
       position: relative;
-      top: -300px;
+      top: -270px;
     }
   }
 `;

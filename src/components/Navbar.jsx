@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from "../assets/logo.png";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {VscChromeClose} from "react-icons/vsc";
-
+import {Link} from "react-router-dom";
 const Navbar = () => {
   const [navbarIsActive,setNavbarIsActive] = useState();
 
@@ -12,7 +12,10 @@ const Navbar = () => {
     <Nav>
       <div className="brand">
         <div className="container">
-          <img src={logo} alt="Nexus|Nursing Logo"/>
+          <Link to="/">
+            <img src={logo} alt="Nexus|Nursing Logo" id="mainLogo"/>
+          </Link>
+
         </div>
         <div className="toggle">
           {navbarIsActive ? <VscChromeClose onClick={ () => setNavbarIsActive(false)}/> :
@@ -20,20 +23,20 @@ const Navbar = () => {
         </div>
       </div>
 
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/about">About us</a></li>
-        <li><a href="/contact">Contact us</a></li>
+      <ul id="desktopMenu">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/services">Services</Link></li>
+        <li><Link to="/about">About us</Link></li>
+        <li><Link to="/contact">Contact us</Link></li>
       </ul>
     </Nav>
 
     <ResponsiveNav state={navbarIsActive}>
     <ul>
-      <li><a href="#home" onClick={ () => setNavbarIsActive(false) }>Home</a></li>
-      <li><a href="#services" onClick={ () => setNavbarIsActive(false) }>Services</a></li>
-      <li><a href="#recommend" onClick={ () => setNavbarIsActive(false) }>Places</a></li>
-      <li><a href="#testimonials" onClick={ () => setNavbarIsActive(false) }>Testimonials</a></li>
+      <li><Link to="/" onClick={ () => setNavbarIsActive(false) }>Home</Link></li>
+      <li><Link to="/services" onClick={ () => setNavbarIsActive(false) }>Services</Link></li>
+      <li><Link to="/about" onClick={ () => setNavbarIsActive(false) }>About</Link></li>
+      <li><Link to="/contact" onClick={ () => setNavbarIsActive(false) }>Contact</Link></li>
     </ul>
     </ResponsiveNav>
     </>

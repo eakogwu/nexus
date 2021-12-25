@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="background">
           <img src={hero} alt="hero"/>
         </div>
-        <div className="content">
+        <div className="content" id="heroContent">
           <div className="title">
             <h1>You Deserve Better: Join the
               Future of Healthcare with
