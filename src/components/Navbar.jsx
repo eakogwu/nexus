@@ -34,10 +34,10 @@ const Navbar = () => {
 
     <ResponsiveNav state={navbarIsActive}>
     <ul>
-      <li><Link to="/" onClick={ () => setNavbarIsActive(false) }>Home</Link></li>
-      <li><Link to="/services" onClick={ () => setNavbarIsActive(false) }>Services</Link></li>
-      <li><Link to="/about" onClick={ () => setNavbarIsActive(false) }>About</Link></li>
-      <li><Link to="/contact" onClick={ () => setNavbarIsActive(false) }>Contact</Link></li>
+      <li><CustomLink to="/" onClick={ () => setNavbarIsActive(false) }>Home</CustomLink></li>
+      <li><CustomLink to="/services" onClick={ () => setNavbarIsActive(false) }>Services</CustomLink></li>
+      <li><CustomLink to="/about" onClick={ () => setNavbarIsActive(false) }>About</CustomLink></li>
+      <li><CustomLink to="/contact" onClick={ () => setNavbarIsActive(false) }>Contact</CustomLink></li>
     </ul>
     </ResponsiveNav>
     </>
