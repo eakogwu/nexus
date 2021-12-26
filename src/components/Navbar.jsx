@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {VscChromeClose} from "react-icons/vsc";
 import {Link} from "react-router-dom";
+import CustomLink from "./CustomLink";
 const Navbar = () => {
   const [navbarIsActive,setNavbarIsActive] = useState();
 
@@ -24,10 +25,10 @@ const Navbar = () => {
       </div>
 
       <ul id="desktopMenu">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/services">Services</Link></li>
-        <li><Link to="/about">About us</Link></li>
-        <li><Link to="/contact">Contact us</Link></li>
+        <li><CustomLink to="/">Home</CustomLink></li>
+        <li><CustomLink to="/services">Services</CustomLink></li>
+        <li><CustomLink to="/about">About us</CustomLink></li>
+        <li><CustomLink to="/contact">Contact us</CustomLink></li>
       </ul>
     </Nav>
 
@@ -84,12 +85,10 @@ const Nav = styled.nav`
           color: #023e8a;
         }
       }
-      &:first-of-type{
-        a{
-          color: #023e8a;
-          font-weight: 700;
-        }
-      }
+      a.active{
+         color: #023e8a;
+         font-weight: 700;
+       }
     }
   }
 
