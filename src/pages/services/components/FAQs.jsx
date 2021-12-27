@@ -13,15 +13,15 @@ const FaQs = () => {
 
     const faqList = [
         {
-            question:"How do register?",
+            question:"How do I register?",
             answer:"Fill out the form on our website and we will get back to you in 24 hours"
         },
         {
-            question:"How do register?",
+            question:"How do I register?",
             answer:"Fill out the form on our website and we will get back to you in 24 hours"
         },
         {
-            question:"How do register?",
+            question:"How do I register?",
             answer:"Fill out the form on our website and we will get back to you in 24 hours"
         }
     ]
