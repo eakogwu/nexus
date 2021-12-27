@@ -12,7 +12,8 @@ const Sections = () => {
         const right = scrollreveal({
             origin:"right",
             distance: "80px",
-            duration:2000
+            duration:1500,
+            reset:true
         });
         right.reveal(
             `.image.right`,
@@ -25,7 +26,8 @@ const Sections = () => {
         const left = scrollreveal({
             origin:"left",
             distance: "80px",
-            duration:2000
+            duration:1500,
+            reset:true
         });
         left.reveal(
             `.image.left`,
