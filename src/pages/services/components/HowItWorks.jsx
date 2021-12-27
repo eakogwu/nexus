@@ -54,7 +54,7 @@ const Section = styled.section`
   }
   
   .container{
-    padding: 1rem 3rem;
+    padding: 2rem 3rem 1rem;
     display: flex;
     flex-direction: column;
     width: 100%;
