@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import regBg from "../../../assets/nurses.jpg";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
+
 
 const Register = () => {
+  const [value,setValue] = useState();
   return (
     <Section>
       <div className="background">
@@ -38,7 +42,8 @@ const Register = () => {
           </div>
           <div>
             <label htmlFor="">Phone number</label>
-            <input type="text" placeholder="Phone number"/>
+            <PhoneInput value={value} defaultCountry="US" international onChange={setValue} />
+            {/*<input type="text" placeholder="Phone number"/>*/}
           </div>
           <div>
             <div className="privacy-policy">

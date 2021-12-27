@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
 const Form = () => {
+    const [value,setValue] = useState();
     return (
         <Section>
             <form action="">
@@ -20,7 +23,7 @@ const Form = () => {
                 </div>
                 <div>
                     <label htmlFor="mobile">Mobile/Contact</label>
-                    <input type="text" name="mobile"/>
+                    <PhoneInput value={value} defaultCountry="US" international onChange={setValue} />
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
