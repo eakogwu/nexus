@@ -11,6 +11,7 @@ import {notification} from "antd";
 const Register = () => {
   const [value,setValue] = useState();
   const {register,handleSubmit, formState:{errors}, reset} = useForm();
+  const [loading,setLoading] = useState(false);
 
   const successNotification = () => {
     notification["success"]({
@@ -20,10 +21,20 @@ const Register = () => {
     });
   }
 
+  const errorNotification = () => {
+    notification["error"]({
+      message:"Error occur",
+      description: ` <smal>${errors.firstname && "First name is required"}</smal><br/> 
+                     <smal>${errors.lastname && "Last name is required"}</smal><br/>
+                    <smal>${errors.email && "Email required"}</smal><br/>
+                    <smal>${errors.phone && "Phone required"}</smal><br/>
+                    <smal>${errors.agree && "Please agree to our terms and conditions"}</smal><br/>`
+    });
+  };
+
   const onSubmit = data => {
-    console.log(data);
+    setLoading(true);
     postApi('/enroll',data).then(res => {
-      console.log(res);
       if (res.message === 'successful'){
         successNotification();
         reset({
@@ -34,8 +45,10 @@ const Register = () => {
           agree:""
         })
       }
-    })
-        .catch(err => console.log(err.message));
+    }).catch(err => {
+      console.log(err.message)
+    }).finally( ()=> setLoading(false));
+
   }
 
   return (
@@ -51,7 +64,7 @@ const Register = () => {
             NEXUS | NURSING.</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur earum iure nam necessitatibus! Ducimus, non.</p>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} >
 
           <div>
             <h1 className="form-title">Complete this form to
@@ -59,33 +72,38 @@ const Register = () => {
               Nurse (RN) Position.</h1>
           </div>
 
-          <div>
+          <div className="form-group">
             <label htmlFor="">First name</label>
-            <input type="text" {...register('firstname',{ required: true })}  placeholder="First name"/>
+            <input type="text" {...register('firstname',{ required: true })}  placeholder="First name" className={errors.firstname && 'invalid'}/>
+            {errors.firstname ? <small>First name is required</small>:"" }
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="">Last name</label>
-            <input type="text" {...register('lastname',{ required: true })}  placeholder="Last name"/>
+            <input type="text" {...register('lastname',{ required: true })}  placeholder="Last name" className={errors.lastname && 'invalid'}/>
+            {errors.lastname ? <small>Last name is required</small>:"" }
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="">Email</label>
-            <input type="email" {...register('email',{ required: true })}  placeholder="Email address"/>
+            <input type="email" {...register('email',{ required: true })}  placeholder="Email address" className={errors.email && 'invalid'}/>
+            {errors.email ? <small>Email is required</small>:"" }
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="">Phone number</label>
-            <PhoneInput value={value} defaultCountry="US" {...register('phone',{ required: true })}  international onChange={setValue} />
-            {/*<input type="text" placeholder="Phone number"/>*/}
+            <PhoneInput value={value} defaultCountry="US" required {...register('phone',{ required: true })}  international onChange={setValue}  className={errors.phone && 'invalid'}/>
+            {errors.phone ? <small>Phone is required</small>:"" }
           </div>
-          <div>
+          <div className="form-group">
             <div className="privacy-policy">
-              <input type="checkbox" id="privacy" {...register('agree',{ required: true })} />
+              <input type="checkbox" id="privacy" {...register('agree',{ required: true, minLength:8 })}  className={errors.agree && 'invalid'}/>
               <label htmlFor="privacy">By clicking “Submit” button below, the user acknowledges an understanding and acceptance of the Nexus | Nursing <a
                 href="/">Privacy Policy.</a>
               </label>
-            </div>
 
+            </div>
           </div>
-          <button className="btn" type="submit">Submit</button>
+          <button className="btn" type="submit" disabled={loading}>
+            {loading? 'Please wait ... ': 'Submit'}
+          </button>
         </form>
       </div>
     </Section>
@@ -138,6 +156,7 @@ const Section =  styled.section`
       flex-direction: column;
       gap: 1rem;
       color: white;
+
       h1 {
         color: white;
         font-size: 2rem;
@@ -159,6 +178,13 @@ const Section =  styled.section`
         display: flex;
         flex-direction: column;
         gap: 0.21rem;
+        position: relative;
+
+        small {
+          position: absolute;
+          right: 0;
+          color: #a95757;
+        }
 
         input {
           border: 0.1px solid #eeeded;
@@ -174,22 +200,38 @@ const Section =  styled.section`
           &:focus {
             outline: none;
           }
+
+          &.invalid {
+            border: 0.003rem solid red;
+          }
         }
       }
+
+      
+
       .form-title {
         font-size: 1.3rem;
       }
-      .privacy-policy{
+
+      .privacy-policy {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 0.7rem;
-        label{
+        position: relative;
+        label {
           font-size: 0.7rem;
           line-height: 0.8rem;
         }
+
+        input[type="checkbox"]{
+          &.invalid {
+            border: 0.003rem solid red;
+            box-shadow: 1px 1px  4px red;
+          }
+        }
       }
-      
+
       button {
         padding: 0.7rem 1rem;
         border: none;
@@ -207,9 +249,9 @@ const Section =  styled.section`
     }
   }
 
-  @media screen and (min-width: 260px) and (max-width: 750px){
+  @media screen and (min-width: 260px) and (max-width: 750px) {
     height: auto;
-    .container{
+    .container {
       flex-direction: column;
       position: relative;
       top: -270px;
