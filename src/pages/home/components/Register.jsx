@@ -2,11 +2,42 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import regBg from "../../../assets/nurses.jpg";
 import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css'
+import 'react-phone-number-input/style.css';
+import {useForm} from "react-hook-form";
+import {postApi} from "../../../apiCalls";
+import {notification} from "antd";
 
 
 const Register = () => {
   const [value,setValue] = useState();
+  const {register,handleSubmit, formState:{errors}, reset} = useForm();
+
+  const successNotification = () => {
+    notification["success"]({
+      message: 'Successful',
+      description:
+          'Your details was submitted successfully, we will reach you as soon as possible',
+    });
+  }
+
+  const onSubmit = data => {
+    console.log(data);
+    postApi('/enroll',data).then(res => {
+      console.log(res);
+      if (res.message === 'successful'){
+        successNotification();
+        reset({
+          firstname:"",
+          lastname:"",
+          email:"",
+          phone:"",
+          agree:""
+        })
+      }
+    })
+        .catch(err => console.log(err.message));
+  }
+
   return (
     <Section>
       <div className="background">
@@ -20,7 +51,7 @@ const Register = () => {
             NEXUS | NURSING.</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur earum iure nam necessitatibus! Ducimus, non.</p>
         </div>
-        <form action="">
+        <form onSubmit={handleSubmit(onSubmit)}>
 
           <div>
             <h1 className="form-title">Complete this form to
@@ -30,31 +61,31 @@ const Register = () => {
 
           <div>
             <label htmlFor="">First name</label>
-            <input type="text" placeholder="First name"/>
+            <input type="text" {...register('firstname',{ required: true })}  placeholder="First name"/>
           </div>
           <div>
             <label htmlFor="">Last name</label>
-            <input type="text" placeholder="Last name"/>
+            <input type="text" {...register('lastname',{ required: true })}  placeholder="Last name"/>
           </div>
           <div>
             <label htmlFor="">Email</label>
-            <input type="text" placeholder="Email address"/>
+            <input type="email" {...register('email',{ required: true })}  placeholder="Email address"/>
           </div>
           <div>
             <label htmlFor="">Phone number</label>
-            <PhoneInput value={value} defaultCountry="US" international onChange={setValue} />
+            <PhoneInput value={value} defaultCountry="US" {...register('phone',{ required: true })}  international onChange={setValue} />
             {/*<input type="text" placeholder="Phone number"/>*/}
           </div>
           <div>
             <div className="privacy-policy">
-              <input type="checkbox" id="privacy"/>
+              <input type="checkbox" id="privacy" {...register('agree',{ required: true })} />
               <label htmlFor="privacy">By clicking “Submit” button below, the user acknowledges an understanding and acceptance of the Nexus | Nursing <a
                 href="/">Privacy Policy.</a>
               </label>
             </div>
 
           </div>
-          <button className="btn">Submit</button>
+          <button className="btn" type="submit">Submit</button>
         </form>
       </div>
     </Section>
@@ -102,12 +133,13 @@ const Section =  styled.section`
 
     .content {
       padding: 0 2rem;
-      color: white;
       width: 390px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      color: white;
       h1 {
+        color: white;
         font-size: 2rem;
         font-weight: 400;
       }

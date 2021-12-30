@@ -70,11 +70,11 @@ const Section = styled.section`
     gap: 1rem;
     
     .title{
-      color: white;
       width: 50%;
       h1{
         font-size: 3rem;
         letter-spacing: 0.2rem;
+        color: white;
       }
     }
   }

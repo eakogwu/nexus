@@ -100,7 +100,6 @@ const Section = styled.div`
       font-size: 1rem;
       transition: 0.4s ease-in-out;
       cursor: pointer;
-
       &:hover {
         background-color: #01457a;
       }

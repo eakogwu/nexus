@@ -13,10 +13,10 @@ const Contact = () => {
       </div>
       <div className="content">
         <div className="email">
-          <FaEnvelope/> <a href="maito:contact@nexus.com" target="_blank">contact@nexus.com</a>
+          <FaEnvelope/> <a href="mailto:contact@nexus.com" target="_blank"  rel="noopener noreferrer">contact@nexus.com</a>
         </div>
         <div className="phone">
-          <BsFillTelephoneFill/>  <a href="tel:+447 546 46454" target="_blank">+447 546 46454</a>
+          <BsFillTelephoneFill/>  <a href="tel:+447 546 46454" target="_blank"  rel="noopener noreferrer">+447 546 46454</a>
         </div>
       </div>
     </Section>
