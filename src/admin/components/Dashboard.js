@@ -70,9 +70,7 @@ const Dashboard = () => {
             title: '#',
             dataIndex: 'index',
             key: 'index',
-            sorter:true,
-            defaultSortOrder: 'descend',
-            sortDirections: ['descend']
+            sorter:true
         }, {
             title: 'First name',
             dataIndex: 'firstname',

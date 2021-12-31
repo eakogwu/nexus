@@ -21,16 +21,16 @@ const Register = () => {
     });
   }
 
-  const errorNotification = () => {
-    notification["error"]({
-      message:"Error occur",
-      description: ` <smal>${errors.firstname && "First name is required"}</smal><br/> 
-                     <smal>${errors.lastname && "Last name is required"}</smal><br/>
-                    <smal>${errors.email && "Email required"}</smal><br/>
-                    <smal>${errors.phone && "Phone required"}</smal><br/>
-                    <smal>${errors.agree && "Please agree to our terms and conditions"}</smal><br/>`
-    });
-  };
+  // const errorNotification = () => {
+  //   notification["error"]({
+  //     message:"Error occur",
+  //     description: ` <smal>${errors.firstname && "First name is required"}</smal><br/>
+  //                    <smal>${errors.lastname && "Last name is required"}</smal><br/>
+  //                   <smal>${errors.email && "Email required"}</smal><br/>
+  //                   <smal>${errors.phone && "Phone required"}</smal><br/>
+  //                   <smal>${errors.agree && "Please agree to our terms and conditions"}</smal><br/>`
+  //   });
+  // };
 
   const onSubmit = data => {
     setLoading(true);

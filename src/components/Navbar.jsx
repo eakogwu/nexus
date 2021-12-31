@@ -93,6 +93,7 @@ const Nav = styled.nav`
   }
 
   @media screen and (min-width: 260px) and (max-width: 1080px){
+    padding-left: 1rem;
     .brand{
       display: flex;
       justify-content: space-between;
@@ -101,6 +102,7 @@ const Nav = styled.nav`
       .toggle{
         display: block;
         z-index: 10;
+        font-size: 2rem;
       }
     }
     ul,
@@ -133,6 +135,8 @@ const ResponsiveNav = styled.div`
         color: #0077b6;
         font-size: 1.2rem;
         transition: 0.1s ease-in-out;
+        width: 100%;
+        padding: 1rem;
         &:hover{
           color: #023e8a;
         }
