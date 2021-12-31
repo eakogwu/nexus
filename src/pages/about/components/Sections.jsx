@@ -125,6 +125,7 @@ const SectionContainer = styled.div`
     .rightImage,.leftImage{
       flex-direction: column;
       width: 100%;
+      padding: 4rem 3rem;
     }
   }
 `;
