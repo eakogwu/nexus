@@ -128,7 +128,6 @@ const ResponsiveNav = styled.div`
     list-style-type: none;
     li{
       width: 100%;
-      margin: 1rem 0;
       margin-left: 2rem;
       a{
         text-decoration: none;
@@ -136,7 +135,8 @@ const ResponsiveNav = styled.div`
         font-size: 1.2rem;
         transition: 0.1s ease-in-out;
         width: 100%;
-        padding: 1rem;
+        padding: 0.5rem;
+        display: block;
         &:hover{
           color: #023e8a;
         }
